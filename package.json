@@ -1,0 +1,16 @@
+{
+  "name": "simple-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "start": "npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-tailwind/html": "^2.2.2"
+  }
+}
