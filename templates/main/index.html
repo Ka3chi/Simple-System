@@ -17,48 +17,22 @@
     {% endcompress %}
   </head>
   <body>
-    {% comment %} <div class='h-screen w-screen'>
-      <div class=" w-screen h-[70px] bg-green-500 fixed">
-        header
-        <button class="p-5 bg-blue-gray-400" id="b1">click me</button>
-      </div>
-      <div class="h-screen w-[300px] top-[70px] bg-red-500 fixed" id="sidebar">
-        sidebar
-      </div>
+    <header class="p-5 bg-black text-white"><label>This is header</label>
+    {% comment %} <button id="b1"><i class="fa-solid fa-bars"></i></button> {% endcomment %}
+   </header>
 
-      <div class="left-[300px] top-[70px] bg-blue-gray-400  h-[100%] fixed overflow-auto  w-[100%]" id="content">
-        {% block content %}
-      
-        {% endblock content %}
-      </div> 
-    </div> {% endcomment %}
-    {% comment %} <div class=" w-screen h-[70px] bg-green-500 fixed">
-      header
-    </div>
-    <div class="h-screen w-[300px] top-[70px] bg-red-500 fixed">
-      sidebar
-    </div>
-  
-    <div class="ms-[300px] top-[70px] bg-blue-gray-400 w-[100%] h-[100%]">
-      {% block content %}
-    
-      {% endblock content %}
-    </div> {% endcomment %}
- 
+    <div class=" min-h-screen flex p-5 bg-gray-300" >
 
-   <header class="p-5 bg-black w-full text-white">This is header</header>
-
-    <div class="min-h-screen bg-gray-200 w-full flex">
-      <aside class="w-[200px] bg-green-400 p-4">
-        <div>
-          <button id="loadDashboard">click me</button>
-          <button id="loadUsermanagement">click me too</button>
-          <a href="" id="loadDashboard">
-            <i class="fa-solid fa-house"></i>Dashboard</a>
+      {% comment %} side nav starts here {% endcomment %}
+      <aside class="p-5 bg-white w-[250px] rounded-[10px] mr-5" id="sidenav">
+        <div class="flex flex-row justify-center items-center mb-5">
+          <button id="b1"><i class="fa-solid fa-bars"></i></button>
         </div>
-        <div>
-          <a href="" id="loadUsermanagement">
-            <i class="fa-solid fa-users"></i>User Management</a>
+        <div class=" flex flex-row justify-center items-center">
+          <a href="{% url 'dashboard'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-house"></i><span class=" ps-4 sidelabel">Dashboard</span></a>
+        </div>
+        <div class="flex flex-row justify-center items-center" id="sidea">
+          <a href="{% url 'usermanagement'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">User Management</span></a>
         </div>
       </aside>
       <main class="flex-1" id="content">
@@ -67,10 +41,9 @@
         {% endblock %}
       </main>
     </div>
-
-    <footer class="bg-blue-gray-500 p-5"></footer>
-
     <script src="{% static 'js/index.js' %}">
     </script>
+    <!-- from cdn -->
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
   </body>
 </html>

@@ -6,7 +6,10 @@ module.exports = withMT({
     './templates/**/*.html'
   ],
   theme: {
-    extend: {},
+    extend: {
+      "dirtywhite" : "#caf0f8",
+    },
   },
-  plugins: [],
+  plugins: [
+  ],
 });
