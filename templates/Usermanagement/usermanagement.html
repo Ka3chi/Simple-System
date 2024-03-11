@@ -1,10 +1,39 @@
 {% extends "Main/index.html" %}
 
 {% block content %}
-
-    <div class='p-5 bg-yellow-300 h-screen rounded-[10px]' id="usermanagement">
-        <span class="text-white ">This is User Management</h1>
-
-    </div>
-
+<div class="p-5 bg-gray-600 h-screen rounded-[10px]" id="usermanagement">
+    <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[150px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Add User</span></a>
+        <table>
+            <thead> 
+                <tr>
+                    <th>Username</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in accounts %}
+                <tr>
+                    <td>{{ account.username }}</td>
+                    <td>{{ account.firstname }}</td>
+                    <td>{{ account.lastname}}</td>
+                    <td>{{ account.email }}</td>
+                    <td>{{ account.password }}</td>
+                    <td>
+                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Delete</span></a>
+                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Update</span></a>
+                    </td>
+                </tr>
+            {% empty %}
+        <tr>
+            <td colspan="2">No items in list</td>
+        </tr>
+           
+    {% endfor %}
+            </tbody>
+        </table>
+</div>
 {% endblock %}
