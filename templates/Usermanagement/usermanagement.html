@@ -1,30 +1,39 @@
 {% extends "Main/index.html" %}
 
 {% block content %}
-<div class="p-5 bg-gray-600 h-screen rounded-[10px]" id="usermanagement">
-    <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[150px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Add User</span></a>
+<div class="p-5 bg-white h-screen rounded-[10px]" id="usermanagement">
+    <div class="bgheader w-[100%]">
+        <h1 class="text-[100px]-">User Management</h1>
+    </div>
+    {% comment %} modal for create user {% endcomment %}
+    <button data-ripple-light="true" data-dialog-target="dialog-md"
+    class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none h-[50px] ms-56 mt-8">
+    Create User
+    </button>
+
+<div class="flex justify-center mt-8">
         <table>
             <thead> 
                 <tr>
-                    <th>Username</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Actions</th>
+                    <th class="p-3">Username</th>
+                    <th class="p-3">Firstname</th>
+                    <th class="p-3">Lastname</th>
+                    <th class="p-3">Email</th>
+                    <th class="p-3">Password</th>
+                    <th class="p-3">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
                 {% for account in accounts %}
                 <tr>
-                    <td>{{ account.username }}</td>
-                    <td>{{ account.firstname }}</td>
-                    <td>{{ account.lastname}}</td>
-                    <td>{{ account.email }}</td>
-                    <td>{{ account.password }}</td>
-                    <td>
+                    <td class="p-3">{{ account.username }}</td>
+                    <td class="p-3">{{ account.firstname }}</td>
+                    <td class="p-3">{{ account.lastname}}</td>
+                    <td class="p-3">{{ account.email }}</td>
+                    <td class="p-3">{{ account.password }}</td>
+                    <td class="flex flex-row">
                         <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Delete</span></a>
-                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Update</span></a>
+                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Edit</span></a>
                     </td>
                 </tr>
             {% empty %}
@@ -35,5 +44,58 @@
     {% endfor %}
             </tbody>
         </table>
+    </div>
+
 </div>
+{% comment %} modal for add user {% endcomment %}
+<div data-dialog-backdrop="dialog-md" data-dialog-backdrop-close="true"
+class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+<div data-dialog="dialog-md"
+  class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
+  <div
+    class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
+    Add New User
+    <button data-ripple-dark="true" data-dialog-close="true"
+      class="relative h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+      type="button">
+      <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+  <div
+    class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500">
+    
+     <form method="post" action="{% url 'usermanagement' %}" >
+        {% csrf_token %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" autocomplete="off"><br>
+        <label for="firstname">Firstname:</label><br>
+        <textarea id="firstname" name="firstname"></textarea><br>
+        <label for="lastname">Lastname:</label><br>
+        <input type="text" id="lastname" name="lastname"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" autocomplete="off"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <button type="submit">Save</button>
+    </form>
+  </div>
+  <div class="flex flex-wrap items-center justify-end p-4 shrink-0 text-blue-gray-500">
+    <button data-ripple-dark="true" data-dialog-close="true"
+      class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+      Cancel
+    </button>
+    <button data-ripple-light="true" data-dialog-close="true"
+      class="middle none center rounded-lg bg-gradient-to-tr from-green-600 to-green-400 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+      Confirm
+    </button>
+  </div>
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
 {% endblock %}

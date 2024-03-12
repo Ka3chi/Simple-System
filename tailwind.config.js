@@ -8,6 +8,7 @@ module.exports = withMT({
   theme: {
     extend: {
       "dirtywhite" : "#caf0f8",
+      "header" : "#e3d5ca",
     },
   },
   plugins: [
