@@ -10,45 +10,53 @@
     <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
     <script src="{% static 'fontawesome/js/all.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Home</title>
 
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}" />
     {% endcompress %}
+    <style>
+      {% comment %} body{
+        overflow:hidden
+      } {% endcomment %}
+    </style>
   </head>
   <body>
-    {% comment %} Header {% endcomment %}
-    <header class="p-5 bg-black text-white flex flex-row">
-      <div><h1>Logo</h1></div>
-      <div class="w-[1250px]"></div>
-      <div>Profile</div>
-   </header>
+    {% comment %} parent {% endcomment %}
+    <div class="w-screen h-screen overflow-hidden flex flex-col bg-gray-300">
+      <header class="p-5 bg-black text-white flex w-[100%]">
+        <div><h1>Logo</h1></div>
+        <div class="w-[1250px]"></div>
+        <div>Profile</div>
+      </header>
+      {% comment %} parent for the content {% endcomment %}
+      <div class="w-[100%] h-[100%] flex flex-row p-5">
+        <aside class="bg-white w-[250px] rounded-[10px] transition-all p-5" id="sidenav">
+          <div class="flex flex-row justify-center items-center mb-5">
 
-    <div class=" min-h-screen flex p-5 bg-gray-300" >
-
-      {% comment %} side nav starts here {% endcomment %}
-      <aside class="p-5 bg-white w-[250px] rounded-[10px] transition-all mr-5" id="sidenav" >
-        <div class="flex flex-row justify-center items-center mb-5">
-
-          <button id="b1"><i class="fa-solid fa-bars"></i></button>
-        </div>
-        <div class=" flex flex-row justify-center items-center transition-all">
-          <a href="{% url 'dashboard'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-house"></i><span class=" ps-4 sidelabel transition-all">Dashboard</span></a>
-        </div>
-        <div class="flex flex-row justify-center items-center" id="sidea">
-          <a href="{% url 'usermanagement'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">User Management</span></a>
-        </div>
-      </aside>
-      <main class="flex-1" id="content">
+            <button id="b1"><i class="fa-solid fa-bars"></i></button>
+          </div>
+          <div class=" flex flex-row justify-center items-center transition-all">
+            <a href="{% url 'dashboard'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-house"></i><span class=" ps-4 sidelabel transition-all">Dashboard</span></a>
+          </div>
+          <div class="flex flex-row justify-center items-center" id="sidea">
+            <a href="{% url 'usermanagement'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">User Management</span></a>
+          </div>
+        </aside>
+        <main class="flex-1 overflow-hidden ms-5" id="content">
         {% block content %}
 
         {% endblock %}
-      </main>
+        </main>
+      </div>
+
     </div>
     <script src="{% static 'js/index.js' %}">
     </script>
     <!-- from cdn -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
 

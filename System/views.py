@@ -20,7 +20,9 @@ def usermanagement(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
-        info = Accounts.objects.create(username=username, firstname=firstname, lastname=lastname, email=email, password=password) 
+        info = Accounts.objects.create(username=username, firstname=firstname, lastname=lastname, email=email, password=password)
+        
         return render(request, 'Usermanagement/usermanagement.html', {'accounts': accounts})
+
     else:
         return render(request, 'Usermanagement/usermanagement.html', {'accounts': accounts})

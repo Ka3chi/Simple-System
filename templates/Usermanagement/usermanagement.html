@@ -1,9 +1,9 @@
 {% extends "Main/index.html" %}
 
 {% block content %}
-<div class="p-5 bg-white h-screen rounded-[10px]" id="usermanagement">
-    <div class="bgheader w-[100%]">
-        <h1 class="text-[100px]-">User Management</h1>
+<div class="p-5 bg-white rounded-[10px] h-[100%]" id="usermanagement">
+    <div class=" w-[100%] flex justify-center items-center">
+        <h1 class="text-[40px]">User Management</h1>
     </div>
     {% comment %} modal for create user {% endcomment %}
     <button data-ripple-light="true" data-dialog-target="dialog-md"
@@ -11,8 +11,8 @@
     Create User
     </button>
 
-<div class="flex justify-center mt-8">
-        <table>
+<div class="flex justify-center mt-8  max-h-[500px]  overflow-y-scroll">
+        <table class=" " >
             <thead> 
                 <tr>
                     <th class="p-3">Username</th>
@@ -32,8 +32,8 @@
                     <td class="p-3">{{ account.email }}</td>
                     <td class="p-3">{{ account.password }}</td>
                     <td class="flex flex-row">
-                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Delete</span></a>
-                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" sidelabel transition-all">Edit</span></a>
+                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" transition-all">Delete</span></a>
+                        <a href="" class="flex justify-center items-center select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[100px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><span class=" transition-all">Edit</span></a>
                     </td>
                 </tr>
             {% empty %}
@@ -48,7 +48,7 @@
 
 </div>
 {% comment %} modal for add user {% endcomment %}
-<div data-dialog-backdrop="dialog-md" data-dialog-backdrop-close="true"
+<div data-dialog-backdrop="dialog-md" data-dialog-backdrop-close="true" id="createusermodal"
 class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
 <div data-dialog="dialog-md"
   class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
@@ -69,30 +69,34 @@ class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-it
   <div
     class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500">
     
-     <form method="post" action="{% url 'usermanagement' %}" >
+     <form method="post" action="{% url 'usermanagement' %}" id="formcreateuser">
         {% csrf_token %}
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username" autocomplete="off"><br>
         <label for="firstname">Firstname:</label><br>
-        <textarea id="firstname" name="firstname"></textarea><br>
+        
+        <textarea id="firstname" name="firstname" ></textarea><br>
         <label for="lastname">Lastname:</label><br>
-        <input type="text" id="lastname" name="lastname"><br>
+        <input type="text" id="lastname" name="lastname" ><br>
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email" autocomplete="off"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br>
-        <button type="submit">Save</button>
-    </form>
+        <p id="error-message" class="text-red-500"></p>
+   
+
+
   </div>
   <div class="flex flex-wrap items-center justify-end p-4 shrink-0 text-blue-gray-500">
-    <button data-ripple-dark="true" data-dialog-close="true"
+    <button data-ripple-dark="true" data-dialog-close="true" type="button"
       class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
       Cancel
     </button>
-    <button data-ripple-light="true" data-dialog-close="true"
+    <button data-ripple-light="true" type="submit" id="createuser" data-dialog-close="true"
       class="middle none center rounded-lg bg-gradient-to-tr from-green-600 to-green-400 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-      Confirm
+      Create
     </button>
+  </form>
   </div>
 </div>
 </div>
