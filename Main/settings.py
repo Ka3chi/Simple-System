@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'compressor',
     'livereload',
     'fontawesomefree',
+
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,6 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 COMPRESS_ENABLED = True
  
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+AUTH_USER_MODEL = 'System.CustomUser'
+

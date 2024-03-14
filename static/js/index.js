@@ -20,24 +20,9 @@ $(document).ready(function () {
     });
     
     $('#formcreateuser').submit(function(event) {
-        var username = $('#username').val()
-        var firstname = $('#firstname').val()
-        var lastname = $('#lastname').val()
-        var email = $('#email').val()
-        var password = $('#password').val()
-        var message =  "all fiels are required"
-        
-        if(username === "" || firstname === "" || lastname === "" || email === "" || password === "")
-        { 
+  
+        if($('.errorlist').is(':visible')) { 
             event.preventDefault();
-
-            $('#error-message').text(message);
-            setTimeout(function() {
-                $('#error-message').text("");
-            }, 3000);
-
-            console.log(error)
-            console.log("not complete")
         }
         else
         {
