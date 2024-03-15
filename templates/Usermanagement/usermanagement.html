@@ -31,15 +31,17 @@
                     <td class="p-3">{{ account.last_name}}</td>
                     <td class="p-3">{{ account.email }}</td>
                     <td class="p-3">{{ account.role }}</td>
-                    <td class="flex flex-row">
-                        <button data-ripple-light="true" data-dialog-target="dialog-sm"
-                        class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-3">
-                        Delete
-                        </button>
-                        {% comment %} <button data-ripple-light="true" data-dialog-target="dialog-md"
-                        class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none h-[50px]">
+                    <td class="flex flex-row p-1">
+                        <a href="{% url 'deleteuser' account.id %}"
+                          class="select-none rounded-lg bg-red-500 py-2 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-3 flex justify-center items-center"
+                          type="button">
+                          Delete
+                        </a>
+                        <button 
+                        data-ripple-light="true" data-dialog-target="dialog-md"
+                        class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1 px-1 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-[50px] h-[40px]" onclick="window.location.href='{% url 'updateuser' accounts.id %}'" >
                         Edit
-                        </button> {% endcomment %}
+                        </button>
                     </td>
                 </tr>
             {% empty %}
@@ -51,6 +53,7 @@
             </tbody>
         </table>
     </div>
+    </div>
   </div>
 </div>
 {% comment %} modal for add user {% endcomment %}
@@ -59,10 +62,10 @@
       <div data-dialog="dialog-md"
         class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
         <div
-          class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
-          Its a simple dialog.
+          class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900 justify-center">
+          Create New User
         </div>
-        <div class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500 flex justify-center items-center">
+        <div class="relative p-5 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500 flex justify-center items-center ">
           <form method="post" action="{% url 'usermanagement' %}" id="formcreateuser" class="flex flex-col gap-2">
             {% csrf_token %}
             {% comment %} unsername {% endcomment %}
@@ -156,36 +159,6 @@
       </div>
     </div>
   </div>
-</div>
-
-{% comment %} Model for the delete {% endcomment %}
-    <div data-dialog-backdrop="dialog-sm" data-dialog-backdrop-close="true"
-      class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
-      <div data-dialog="dialog-sm"
-        class="relative m-4 w-1/3 min-w-[33.333333%] max-w-[33.333333%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
-        <div
-          class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
-          Its a simple dialog.
-        </div>
-        <div
-          class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500">
-          The key to more success is to have a lot of pillows. Put it this
-          way, it took me twenty five years to get these plants, twenty five
-          years of blood sweat and tears, and I&apos;m never giving up,
-          I&apos;m just getting started. I&apos;m up to something. Fan luv.
-        </div>
-        <div class="flex flex-wrap items-center justify-end p-4 shrink-0 text-blue-gray-500">
-          <button data-ripple-dark="true" data-dialog-close="true"
-            class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-            Cancel
-          </button>
-          <button data-ripple-light="true" data-dialog-close="true"
-            class="middle none center rounded-lg bg-gradient-to-tr from-green-600 to-green-400 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-            Confirm
-          </button>
-        </div>
-      </div>
-    </div>
-</div>
+{% comment %} Model for the update {% endcomment %}
 <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
 {% endblock %}

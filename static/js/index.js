@@ -21,11 +21,11 @@ $(document).ready(function () {
     
     $('#formcreateuser').submit(function(event) {
   
-        if($('.errorlist').is(':visible')) { 
-            event.preventDefault();
-        }
-        else
-        {
+        // if($('.errorlist').is(':visible')) { 
+        //     event.preventDefault();
+        // }
+        // else
+        // {
             Swal.fire({
                 position: "center",
                 icon: "success",
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 showConfirmButton: false,
                 timer: 1500
               });
-        }
+        // }
 
         
     });
