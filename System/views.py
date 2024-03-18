@@ -4,6 +4,8 @@ from System.forms import CustomUserCreationForm
 
 from .models import *
 
+#modal
+
 # Create your views here.
 
 def dashboard(request):
@@ -13,7 +15,7 @@ def product(request):
     return render(request, 'Product/product.html')
 
 def index(request):
-    return render(request, 'Dashboard/dashboard.html')
+    return render(request, 'Dashboard/dashboard.html'),
 
 #DELETE USER
 def deleteuser(request,id):
@@ -24,7 +26,7 @@ def deleteuser(request,id):
 # def update()
 def usermodal(request, id):
     accounts = CustomUser.objects.get(id=id)
-    userform = CustomUserCreationForm(instance=accounts)
+    userform = CustomUserCreationForm(auto_id='update_%s', instance=accounts)
     
     context = {
         "accounts" : accounts,
@@ -56,7 +58,7 @@ def usermodal(request, id):
 
 def usermanagement(request):
     accounts = CustomUser.objects.all()
-    userform = CustomUserCreationForm()
+    userform = CustomUserCreationForm(auto_id='update_%s')
     
     
     # form submit

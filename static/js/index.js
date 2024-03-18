@@ -1,12 +1,11 @@
 $(document).ready(function() {
     //open modal
     $(document).on("click", "#editbtn", function(e){
-        // e.preventDefault()
+        e.preventDefault()
         var link = $(this).attr("href")
 
         // fetch the usermodal
         $("#usermodalcontent").load(link)
-        print(this)
 
         //open modal
         $("#Openusermodal").click();
@@ -32,7 +31,7 @@ $(document).ready(function() {
         }
     });
     
-    $('#formcreateuser').submit(function(event) {
+    $('#formuser').submit(function(event) {
   
         // if($('.errorlist').is(':visible')) { 
         //     event.preventDefault();
