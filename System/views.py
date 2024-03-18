@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.http import JsonResponse
 from System.forms import CustomUserCreationForm
 
 from .models import *
@@ -15,20 +15,16 @@ def product(request):
 def index(request):
     return render(request, 'Dashboard/dashboard.html')
 
+#DELETE USER
+def deleteuser(request,id):
+    erase = CustomUser.objects.get(id=id)
+    erase.delete()
+    return redirect('usermanagement')
+
 # def update()
-def updateuser(request,id):
+def usermodal(request, id):
     accounts = CustomUser.objects.get(id=id)
-    userform = CustomUserCreationForm()
-    
-    if request.method == 'POST':
-        userform = CustomUserCreationForm(request.POST, instance=accounts)
-        
-        if userform.is_valid():
-            userform.save()
-            return render('usermanagement')
-        else:
-            print(userform.errors)
-        
+    userform = CustomUserCreationForm(instance=accounts)
     
     context = {
         "accounts" : accounts,
@@ -46,13 +42,17 @@ def updateuser(request,id):
                 
         'placeholder': " ",
     })
-    return render(request, 'Usermanagement/usermanagement.html', context)
+    
+    # if request.method == 'POST':
+    #     userform = CustomUserCreationForm(request.POST, instance=accounts)
+        
+    #     if userform.is_valid():
+    #         userform.save()
 
-#DELETE USER
-def deleteuser(request,id):
-    erase = CustomUser.objects.get(id=id)
-    erase.delete()
-    return redirect('usermanagement')
+    #     else: 
+    #         print(userform.errors)
+    
+    return render(request, 'Usermanagement/usermodal.html', context)
 
 def usermanagement(request):
     accounts = CustomUser.objects.all()
@@ -84,4 +84,6 @@ def usermanagement(request):
                 
         'placeholder': " ",
     })
+    
+    # json.parse
     return render(request, 'Usermanagement/usermanagement.html', context)

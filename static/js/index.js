@@ -1,4 +1,17 @@
-$(document).ready(function () {
+$(document).ready(function() {
+    //open modal
+    $(document).on("click", "#editbtn", function(e){
+        // e.preventDefault()
+        var link = $(this).attr("href")
+
+        // fetch the usermodal
+        $("#usermodalcontent").load(link)
+        print(this)
+
+        //open modal
+        $("#Openusermodal").click();
+    });
+    
     //button shrink side nav
     $('#b1').click(function () {
         var sidenav = $('#sidenav');
