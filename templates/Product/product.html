@@ -1,13 +1,13 @@
 {% extends "Main/index.html" %}
 
 {% block content %}
-{% include 'addusermodal.html' %}
     <div class=" h-[100%] rounded-[10px] bg-white p-5" id="product">
         This is Product
+        {% include 'addusermodal.html' %}
 
     </div>
 
-<button onclick="openModal('modal1')">Open Modal 1</button>
+{% comment %} <button onclick="openModal('modal1')">Open Modal 1</button>
 <button onclick="openModal('modal2')">Open Modal 2</button>
 
 <script>
@@ -19,6 +19,6 @@ function closeModal(modalId) {
   var modal = document.getElementById(modalId);
   modal.style.display = "none";
 }
-</script>
+</script> {% endcomment %}
 
 {% endblock %}

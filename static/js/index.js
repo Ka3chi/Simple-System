@@ -1,15 +1,15 @@
 $(document).ready(function() {
     //open modal
-    $(document).on("click", "#editbtn", function(e){
-        e.preventDefault()
-        var link = $(this).attr("href")
+    // $(document).on("click", "#editbtn", function(e){
+    //     // e.preventDefault()
+    //     // var link = $(this).attr("href")
 
-        // fetch the usermodal
-        $("#usermodalcontent").load(link)
+    //     // // fetch the usermodal
+    //     // $("#usermodalcontent").load(link)
 
-        //open modal
-        $("#Openusermodal").click();
-    });
+    //     // //open modal
+    //     // $("#Openusermodal").click();
+    // });
     
     //button shrink side nav
     $('#b1').click(function () {
@@ -42,6 +42,25 @@ $(document).ready(function() {
                 position: "center",
                 icon: "success",
                 title: "Successfully Created User",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        // }
+
+        
+    });
+    //update user
+    $('#updateuser').submit(function(event) {
+  
+        // if($('.errorlist').is(':visible')) { 
+        //     event.preventDefault();
+        // }
+        // else
+        // {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Successfully Updated User",
                 showConfirmButton: false,
                 timer: 1500
               });
