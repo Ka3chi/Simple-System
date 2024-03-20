@@ -5,16 +5,25 @@
     <div class=" w-[100%] flex justify-center items-center">
         <h1 class="text-[40px]">User Management</h1>
     </div>
-    {% comment %} modal for create user {% endcomment %}
+    <div class="flex flex-row">
+      {% comment %} modal for create user {% endcomment %}
     <button data-ripple-light="true" data-dialog-target="dialog-md"
-      class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-40">
+      class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-11 w-[200px]">
       Add User
     </button>
+    <div class="w-[100%]">
 
-<div class="flex justify-center mt-8 max-h-[500px]  overflow-y-scroll">
-        <table>
+    </div>
+    <div class="flex flex-row bg-blue-gray-100 rounded-lg me-14">
+      <input type="text" class="bg-blue-gray-100 rounded-lg"></input>
+      <label class="flex justify-center items-center p-1">Icon</label>
+    </div>
+    </div>
+
+<div class="flex justify-center mt-8 max-h-[500px] overflow-y-scroll ">
+        <table class="ms-5 me-5">
             <thead> 
-                <tr class="bg-blue-500 rounded-[50px]">
+                <tr class="bg-blue-500">
                     <th class="p-3">Username</th>
                     <th class="p-3">Firstname</th>
                     <th class="p-3">Lastname</th>
