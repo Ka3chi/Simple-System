@@ -18,39 +18,6 @@ def index(request):
 def addusermodal(request):
     return render(request, "UsermanagementModals/addusermodal.html")
 
-#UPDATE PASSWORD
-# def changepassword(request, id):
-#     if request.method == 'POST':
-#         accounts = CustomUser.objects.get(id=id)
-#         accounts.set_password('')
-#         accounts.save()
-#     return redirect('usermanagement')
-def changepassword(request, id):
-    if request.method == 'POST':
-        # Get the user object
-        try:
-            user = CustomUser.objects.get(id=id)
-        except CustomUser.DoesNotExist:
-            # Handle the case where the user doesn't exist
-            return redirect('usermanagement')  # Redirect back to user management page or show an error message
-
-        # Get the new password from the form input
-        new_password = request.POST.get('new_password')  # Assuming your form field is named 'new_password'
-
-        # Perform basic password validation
-        if len(new_password) < 8:  # Example: Minimum password length is 8 characters
-            # Return a response indicating invalid password
-            return redirect('usermanagement')  # Redirect back to user management page or show an error message
-
-        # Set the new password
-        user.set_password(new_password)
-
-        # Save the user object to persist the changes
-        user.save()
-
-        # Redirect to user management page or any other appropriate page
-        return redirect('usermanagement')
-
 #DELETE USER
 def deleteuser(request,id):
     erase = CustomUser.objects.get(id=id)
@@ -93,9 +60,10 @@ def usermanagement(request):
 
         if userform.is_valid():
             userform.save()
+            return JsonResponse({'success': True})
         else:
             print(userform.errors)
-    
+             
     context = {
         "accounts" : accounts,
         "userform" : userform,

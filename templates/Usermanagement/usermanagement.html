@@ -1,7 +1,7 @@
 {% extends "Main/index.html" %}
 
 {% block content %}
-<div class="p-5 bg-white rounded-[10px] h-[100%]" id="usermanagement">
+<div class="p-5 bg-white rounded-[10px] h-[100%] animate-fade-up" id="usermanagement">
     <div class=" w-[100%] flex justify-center items-center mb-3">
         <h1 class="text-[40px]">User Management</h1>
     </div>
@@ -148,7 +148,7 @@
   </div>
 {% comment %} modal for add user {% endcomment %}
     <div data-dialog-backdrop="dialog-md" data-dialog-backdrop-close="true"
-      class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+      class="pointer-events-none fixed inset-0 z-[999] flex h-screen w-screen justify-center items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
       <div data-dialog="dialog-md"
         class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
         <div
@@ -156,7 +156,7 @@
           Create New User
         </div>
         <div class="relative p-5 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500 flex justify-center items-center ">
-          <form method="post" action="{% url 'usermanagement' %}" id="formuser" class="flex flex-col gap-2">
+          <form method="post" action="{% url 'usermanagement' %}" id="formuser" class="formuser flex flex-col gap-2">
             {% csrf_token %}
             {% comment %} unsername {% endcomment %}
             <div class="w-72">

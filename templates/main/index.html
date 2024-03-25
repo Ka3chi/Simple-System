@@ -56,21 +56,21 @@
       </header>
       {% comment %} parent for the content {% endcomment %}
       <div class="w-[100%] h-[100%] flex flex-row p-5">
-        <aside class="bg-white w-[250px] rounded-[10px] transition-all p-5" id="sidenav">
+        <aside class="bg-white transition ease-in-out w-[250px] rounded-[10px] p-5" id="sidenav">
           <div class="flex flex-row justify-center items-center mb-5">
-            <button id="b1"><i class="fa-solid fa-bars"></i></button>
+            <button id="toggleButton"><i class="fa-solid fa-bars"></i></button>
           </div>
           <div class=" flex flex-row justify-center items-center transition-all">
-            <a href="{% url 'dashboard'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-house"></i><span class=" ps-4 sidelabel transition-all">Dashboard</span></a>
+            <a href="{% url 'dashboard'%}" class=" sideLink flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-house"></i><span class=" ps-4 sidelabel transition-all">Dashboard</span></a>
           </div>
           <div class="flex flex-row justify-center items-center" id="sidea">
-            <a href="{% url 'usermanagement'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">User Management</span></a>
+            <a href="{% url 'usermanagement'%}" class=" sideLink flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">User Management</span></a>
           </div>
           <div class="flex flex-row justify-center items-center" id="sidea">
-            <a href="{% url 'product'%}" class="flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">Product</span></a>
+            <a href="{% url 'product'%}" class=" sideLink flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px]  disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class=" fa-solid fa-users"></i><span class="ps-4 sidelabel">Product</span></a>
           </div>
         </aside>
-        <main class="flex-1 overflow-hidden ms-5" id="content">
+        <main class="transition ease-in-out flex-1 overflow-hidden ms-5" id="content">
         {% block content %}
 
         {% endblock %}

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@material-tailwind/html": "^2.2.2"
+    "@material-tailwind/html": "^2.2.2",
+    "tailwindcss-animated": "^1.0.1"
   }
 }
