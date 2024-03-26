@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from System.forms import CustomUserChangeForm, CustomUserCreationForm
-from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 from .models import *
 
@@ -53,6 +53,9 @@ def usermanagement(request):
     accounts = CustomUser.objects.all()
     userform = CustomUserCreationForm()
     
+    P = Paginator(CustomUser.objects.all(),6)
+    page = request.GET.get('page')
+    accounts = P.get_page(page)
     
     # form submit
     if request.method == "POST":
@@ -60,9 +63,13 @@ def usermanagement(request):
 
         if userform.is_valid():
             userform.save()
-            return JsonResponse({'success': True})
+            userform = CustomUserCreationForm()
+    
         else:
             print(userform.errors)
+            
+    else:
+        userform = CustomUserCreationForm()
              
     context = {
         "accounts" : accounts,

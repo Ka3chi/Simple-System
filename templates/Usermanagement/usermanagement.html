@@ -85,72 +85,54 @@
            
     {% endfor %}
             </tbody>
-        </table>
-        <div class="flex justify-center items-center mt-3">
-          <div class="flex items-center gap-4">
-              <button disabled
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                  aria-hidden="true" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                </svg>
-                Previous
-              </button>
-              <div class="flex items-center gap-2">
-                <button
-                  class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg bg-gray-900 text-center align-middle font-sans text-xs font-medium uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  type="button">
-                  <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                    1
-                  </span>
-                </button>
-                <button
-                  class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  type="button">
-                  <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                    2
-                  </span>
-                </button>
-                <button
-                  class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  type="button">
-                  <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                    3
-                  </span>
-                </button>
-                <button
-                  class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  type="button">
-                  <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                    4
-                  </span>
-                </button>
-                <button
-                  class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                  type="button">
-                  <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                    5
-                  </span>
-                </button>
-              </div>
-              <button
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button">
-                Next
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                  aria-hidden="true" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                </svg>
-              </button>
-        </div>
-    </div>  
+        </table> 
   </div>
+  <div class="flex justify-center items-center mt-3">
+    <div class="flex justify-center items-center gap-4">
+      {% if accounts.has_previous  %}
+        <a href="?page=1"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          << First
+        </a>
+        <a href="?page={{ accounts.previous_page_number }}"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            aria-hidden="true" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+          </svg>
+          Previous
+        </a>
+        {% endif %}
+        {% comment %} <div class="w-[100px]"></div> {% endcomment %}
+        <div class="flex items-center gap-2">
+          Page {{ accounts.number }} of {{ accounts.paginator.num_pages }}
+        </div>
+        {% comment %} <div class="w-[200px]"></div> {% endcomment %}
+        {% if accounts.has_next  %}
+        <a href="?page={{ accounts.next_page_number}}"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            aria-hidden="true" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+          </svg>
+        </a>
+        <a href="?page={{ accounts.paginator.num_pages}}"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          Last >>
+        </a>
+        {% endif %}
+  </div>
+</div> 
 {% comment %} modal for add user {% endcomment %}
     <div data-dialog-backdrop="dialog-md" data-dialog-backdrop-close="true"
-      class="pointer-events-none fixed inset-0 z-[999] flex h-screen w-screen justify-center items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+      class="pointer-events-none fixed inset-0 z-[999] h-screen w-screen bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300 flex justify-center items-center">
       <div data-dialog="dialog-md"
-        class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
+        class=" m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl absolute top-[170px] left-[250px] ">
         <div
           class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900 justify-center">
           Create New User
