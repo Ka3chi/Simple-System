@@ -23,20 +23,19 @@ def product(request):
 
         if productform.is_valid():
             productform.save()
-            productform = CustomProductForm()
+            # productform = CustomProductForm()
     
         else:
             print(products.errors)
             
     else:
-        productform = CustomUserCreationForm()
+        productform = CustomProductForm()
              
     context = {
         "products" : products,
         "productform" : productform,
         
     }
-
     return render(request, 'Product/product.html', context)
 
 def index(request):
