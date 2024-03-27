@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from System.forms import CustomUserChangeForm, CustomUserCreationForm
+from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm
 from django.core.paginator import Paginator
 
 from .models import *
@@ -10,7 +10,34 @@ def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
 def product(request):
-    return render(request, 'Product/product.html')
+    products = Product.objects.all()
+    productform = CustomProductForm()
+    
+    # P = Paginator(CustomUser.objects.all(),6)
+    # page = request.GET.get('page')
+    # Accounts = P.get_page(page)
+    
+    # form submit
+    if request.method == "POST":
+        productform = CustomProductForm(request.POST)
+
+        if productform.is_valid():
+            productform.save()
+            productform = CustomProductForm()
+    
+        else:
+            print(products.errors)
+            
+    else:
+        productform = CustomUserCreationForm()
+             
+    context = {
+        "products" : products,
+        "productform" : productform,
+        
+    }
+
+    return render(request, 'Product/product.html', context)
 
 def index(request):
     return render(request, 'Dashboard/dashboard.html')

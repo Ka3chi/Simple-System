@@ -87,11 +87,11 @@
             </tbody>
         </table> 
   </div>
-  <div class="flex justify-center items-center mt-3">
-    <div class="flex justify-center items-center gap-4">
+  <div class="flex flex-row justify-center mt-3">
+    <div class="flex gap-4">
       {% if accounts.has_previous  %}
         <a href="?page=1"
-          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-36"
           type="button">
           << First
         </a>
@@ -104,13 +104,39 @@
           </svg>
           Previous
         </a>
-        {% endif %}
-        {% comment %} <div class="w-[100px]"></div> {% endcomment %}
-        <div class="flex items-center gap-2">
+        
+        <div class="flex items-center gap-2 ms-36 me-36">
           Page {{ accounts.number }} of {{ accounts.paginator.num_pages }}
         </div>
-        {% comment %} <div class="w-[200px]"></div> {% endcomment %}
+
+        <button disabled
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-36"
+          type="button">
+          
+        </button>
+        <button disabled
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-36"
+          type="button">
+          
+        </button>
+        {% endif %}
+
         {% if accounts.has_next  %}
+        <button disabled
+        class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button">
+        
+      </button>
+      <button disabled
+        class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none "
+        type="button">
+        
+      </button>
+
+        <div class="flex justify-center items-center gap-2 ms-36 me-36">
+          Page {{ accounts.number }} of {{ accounts.paginator.num_pages }}
+        </div>
+
         <a href="?page={{ accounts.next_page_number}}"
           class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           type="button">
@@ -121,7 +147,7 @@
           </svg>
         </a>
         <a href="?page={{ accounts.paginator.num_pages}}"
-          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none "
           type="button">
           Last >>
         </a>
@@ -231,5 +257,6 @@
       </div>
     </div>
   </div>
+</div>
 <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
 {% endblock %}
