@@ -9,24 +9,29 @@ from .models import *
 def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
+
+
 def product(request):
     products = Product.objects.all()
     productform = CustomProductForm()
     
-    # P = Paginator(CustomUser.objects.all(),6)
-    # page = request.GET.get('page')
-    # Accounts = P.get_page(page)
+    P = Paginator(Product.objects.all(),6)
+    page = request.GET.get('page')
+    products = P.get_page(page)
     
     # form submit
     if request.method == "POST":
-        productform = CustomProductForm(request.POST)
+        productform = CustomProductForm(request.POST, request.FILES)
 
         if productform.is_valid():
+            # productadd.image = imageproduct
+            # productadd.save()
             productform.save()
+            return redirect('product')
             # productform = CustomProductForm()
     
         else:
-            print(products.errors)
+            print(productform.errors)
             
     else:
         productform = CustomProductForm()

@@ -40,9 +40,9 @@
 </div>
 
 <div class="flex justify-center mt-8 max-h-[500px] flex-col overflow-y-scroll ">
-        <table class="ms-5 me-5">
+        <table>
             <thead> 
-                <tr class="bg-blue-500">
+                <tr class="bg-blue-500 text-white items-center">
                     <th class="p-3">Username</th>
                     <th class="p-3">Firstname</th>
                     <th class="p-3">Lastname</th>
@@ -55,21 +55,21 @@
                 {% for account in accounts %}
                 <tr>
                     {% comment %} <input type="hidden" {{ account.id }}> {% endcomment %}
-                    <td class="p-3">{{ account.username }}</td>
-                    <td class="p-3">{{ account.first_name }}</td>
-                    <td class="p-3">{{ account.last_name}}</td>
-                    <td class="p-3">{{ account.email }}</td>
-                    <td class="p-3">{{ account.role }}</td>
-                    <td class="flex flex-row p-1">
+                    <td class="ps-10">{{ account.username }}</td>
+                    <td class="ps-10">{{ account.first_name }}</td>
+                    <td class="ps-10">{{ account.last_name}}</td>
+                    <td class="ps-10">{{ account.email }}</td>
+                    <td class="ps-10">{{ account.role }}</td>
+                    <td class="flex flex-row ps-10 mt-3">
                         <a href="{% url 'deleteuser' account.id %}" data-ripple-light="true"
                           class="select-none rounded-lg bg-red-500 py-2 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-3 flex justify-center items-center"
                           type="button">
-                          Delete
+                          <i class="fa-solid fa-trash"></i>
                         </a>
                         <a 
                         data-ripple-light="true" id="editbtn"
                         class=" select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1 px-1 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-[50px] h-[40px] me-3 flex justify-center items-center" href="{% url 'usermodal' account.id %}" >
-                        Edit
+                        <i class="fa-solid fa-pen"></i>
                       </a>
                       <a 
                         data-ripple-light="true" id="editbtn"
@@ -80,7 +80,7 @@
                 </tr>
             {% empty %}
         <tr>
-            <td colspan="2">No items in list</td>
+            <td colspan="2">Currently no users in list</td>
         </tr>
            
     {% endfor %}
@@ -93,7 +93,7 @@
         <a href="?page=1"
           class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-36"
           type="button">
-          << First
+          <i class="fa-solid fa-angles-left"></i> First
         </a>
         <a href="?page={{ accounts.previous_page_number }}"
           class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -149,7 +149,7 @@
         <a href="?page={{ accounts.paginator.num_pages}}"
           class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none "
           type="button">
-          Last >>
+          Last <i class="fa-solid fa-angles-right"></i>
         </a>
         {% endif %}
   </div>

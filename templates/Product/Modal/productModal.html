@@ -3,12 +3,12 @@
     <div data-dialog="dialog-md"
         class=" m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl absolute top-[170px] left-[250px]">
         <!-- Modal content -->
-        <div class="flex items-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
+        <div class="flex items-center justify-center p-4 font-sans text-2xl antialiased font-semibold leading-snug shrink-0 text-blue-gray-900">
             Add Product
         </div>
         <div class="relative p-4 font-sans text-base antialiased font-light leading-relaxed border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 text-blue-gray-500">
-            <form action="" method="post" action="{% url 'product' %}">
-              {% csrf_token %}
+            <form enctype="multipart/form-data" method="post" action="{% url 'product' %}" class="flex flex-col justify-center items-center gap-2">
+            {% csrf_token %}
             {% comment %} product_id {% endcomment %}
             <div class="w-72">
               <div class="relative w-full min-w-[200px] h-10" autocomplete>
@@ -66,7 +66,7 @@
                 </label>
               </div>
             {% comment %} image {% endcomment %}
-              <div class="relative h-10 w-72 min-w-[200px] my-5">
+              <div class="imageproduct relative h-10 w-72 min-w-[200px] my-5">
                 {{ productform.image }}
                 <label
                   class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -75,11 +75,11 @@
               </div>
         </div>
         <div class="flex flex-wrap items-center justify-end p-4 shrink-0 text-blue-gray-500">
-            <button data-ripple-dark="true" data-dialog-close="true"
+            <button data-ripple-dark="true" data-dialog-close="true" type="button"
                 class="px-6 py-3 mr-1 font-sans text-xs font-bold text-red-500 uppercase transition-all rounded-lg middle none center hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                 Cancel
             </button>
-            <button data-ripple-light="true" data-dialog-close="true"
+            <button data-ripple-light="true" data-dialog-close="true" type="submit"
                 class="middle none center rounded-lg bg-gradient-to-tr from-green-600 to-green-400 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                 Confirm
             </button>
