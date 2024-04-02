@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
     //open modal
     // $(document).on("click", "#addproduct", function(e){
     //     e.preventDefault()
@@ -10,7 +10,7 @@ $(document).ready(function() {
     //     // //open modal
     //     $("#openaddproduct").click();
     // });
-
+$(document).ready(function() {
     // JavaScript code to handle modal visibility
     document.addEventListener("DOMContentLoaded", function() {
     const addProductButton = document.getElementById("#addproduct");
@@ -25,12 +25,18 @@ $(document).ready(function() {
     // Event listener for the Add Product button
     addProductButton.addEventListener("click", toggleModal);
     });
-
+});
+$(document).ready(function() {
     // This is for sidenav
     document.getElementById('toggleButton').addEventListener('click', function() {
         document.getElementById('sidenav').classList.toggle('active');
     });
-    
+});
+
+// $(document).ready(function() {
+
+// });
+
     // // JavaScript to change URL and load content via AJAX
     // var sideLinks = document.querySelectorAll('.sideLink');
     // sideLinks.forEach(function(link) {
@@ -78,7 +84,7 @@ $(document).ready(function() {
     //             console.error('Error fetching data:', error);
     //         });
     // });
-
+    $(document).ready(function() {
     // Shrink side nav and content
     $('#toggleButton').click(function () {
         var sidenav = $('#sidenav');
@@ -95,7 +101,8 @@ $(document).ready(function() {
             $('.sidelabel').css('display', 'block');
         }
     });
-    
+});
+$(document).ready(function() {
     $('#formuser').submit(function() {
         // if (success) {
             Swal.fire({
@@ -105,6 +112,7 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 1500
             });
+        });
         // } else {
         //     Swal.fire({
         //         position: "center",
@@ -139,7 +147,7 @@ $(document).ready(function() {
             //     showConfirmButton: false,
             //     timer: 1500
             //   });
-
+$(document).ready(function() {
     //update user
     $('#updateuser').submit(function(event) {
   
@@ -155,8 +163,5 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 1500
               });
-        // }
-
-        
-    });
-});
+            });
+        });

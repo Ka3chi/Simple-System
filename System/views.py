@@ -9,12 +9,24 @@ from .models import *
 def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
-
+def search_product(request):         
+    if 'search' in request.GET:
+        search = request.GET.get('search')
+        products = Product.objects.filter(product_name__icontains=search)
+        
+    else:
+        products = Product.objects.all()
+    context = {
+        "products" : products,
+        
+    }
+    return render(request, 'Product/product.html', context)
 
 def product(request):
     products = Product.objects.all()
     productform = CustomProductForm()
     
+    # pagination
     P = Paginator(Product.objects.all(),6)
     page = request.GET.get('page')
     products = P.get_page(page)
@@ -35,7 +47,7 @@ def product(request):
             
     else:
         productform = CustomProductForm()
-             
+               
     context = {
         "products" : products,
         "productform" : productform,
@@ -54,6 +66,18 @@ def deleteuser(request,id):
     erase = CustomUser.objects.get(id=id)
     erase.delete()
     return redirect('usermanagement')
+
+def search_user(request):         
+    if 'search' in request.GET:
+        search = request.GET.get('search')
+        accounts = CustomUser.objects.filter(username__icontains=search)
+        
+    else:
+        accounts = CustomUser.objects.all()
+    context = {
+        "accounts" : accounts,
+    }
+    return render(request, 'Usermanagement/usermanagement.html', context)
 
 # def update()
 def usermodal(request, id):
