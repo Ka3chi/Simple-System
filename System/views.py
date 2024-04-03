@@ -9,6 +9,18 @@ from .models import *
 def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
+def index(request):
+    return render(request, 'Dashboard/dashboard.html')
+
+def addusermodal(request):
+    return render(request, "UsermanagementModals/addusermodal.html")
+
+def deleteuser(request,id):
+    erase = Product.objects.get(id=id)
+    erase.delete()
+    return redirect('product')
+
+# this is search product
 def search_product(request):         
     if 'search' in request.GET:
         search = request.GET.get('search')
@@ -36,12 +48,9 @@ def product(request):
         productform = CustomProductForm(request.POST, request.FILES)
 
         if productform.is_valid():
-            # productadd.image = imageproduct
-            # productadd.save()
             productform.save()
             return redirect('product')
-            # productform = CustomProductForm()
-    
+
         else:
             print(productform.errors)
             
@@ -55,18 +64,13 @@ def product(request):
     }
     return render(request, 'Product/product.html', context)
 
-def index(request):
-    return render(request, 'Dashboard/dashboard.html')
-
-def addusermodal(request):
-    return render(request, "UsermanagementModals/addusermodal.html")
-
-#DELETE USER
+#for delete user
 def deleteuser(request,id):
     erase = CustomUser.objects.get(id=id)
     erase.delete()
     return redirect('usermanagement')
 
+#for search user
 def search_user(request):         
     if 'search' in request.GET:
         search = request.GET.get('search')
