@@ -79,8 +79,13 @@
                     Status
                   </p>
                 </th>
+                <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                  <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                    Image
+                  </p>
+                </th>
                 <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50 ">
-                  <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70 ">
+                  <p class=" font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70 ">
                     Actions
                   </p>
                 </th>
@@ -94,13 +99,14 @@
                 <td class="p-3">{{ product.quantity }}</td>
                 <td class="p-3">{{ product.price }}</td>
                 <td class="p-3">{{ product.status }}</td>
+                <td class="p-3">{{ product.image.url }}</td>
                 <td class="flex flex-row gap-5">
-                  <button class="p-5">
+                  <a class="p-5" href="{% url 'updateproduct' product.product_id %}"> 
                     <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="p-5">
+                  </a>
+                  <a class="p-5" href="{% url 'deleteproduct' product.product_id %}">
                     <i class="fa-solid fa-trash"></i>
-                  </button>
+                  </a>
                 </td>
               </tr>
                 {% empty %}

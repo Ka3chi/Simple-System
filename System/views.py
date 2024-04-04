@@ -12,11 +12,31 @@ def dashboard(request):
 def index(request):
     return render(request, 'Dashboard/dashboard.html')
 
-def addusermodal(request):
-    return render(request, "UsermanagementModals/addusermodal.html")
+# def update user
+def updateproduct(request, product_id):
+    products = Product.objects.get(product_id=product_id)
+    productform = CustomProductForm(instance=products)
+    
+    if request.method == "POST":
+        productform = CustomProductForm(request.POST, request.FILES, instance=products)
+        
+        if productform.is_valid():
+            productform.save()
+            return redirect('product')
 
-def deleteuser(request,id):
-    erase = Product.objects.get(id=id)
+        else: 
+            print(productform.errors)         
+            
+    context = {
+        "product" : products,
+        "productform" : productform,
+        
+    }
+    return render(request, 'Product/updateproduct.html', context)
+
+# delete product
+def deleteproduct(request,product_id):
+    erase = Product.objects.get(product_id=product_id)
     erase.delete()
     return redirect('product')
 
@@ -83,8 +103,8 @@ def search_user(request):
     }
     return render(request, 'Usermanagement/usermanagement.html', context)
 
-# def update()
-def usermodal(request, id):
+# def update user
+def updateuser(request, id):
     accounts = CustomUser.objects.get(id=id)
     userform = CustomUserChangeForm(instance=accounts)
     # auto_id='update_%s'
@@ -105,7 +125,7 @@ def usermodal(request, id):
         
     }
     
-    return render(request, 'Usermanagement/usermodal.html', context)
+    return render(request, 'Usermanagement/updateuser.html', context)
 
 #render usermanagement and create user
 def usermanagement(request):
