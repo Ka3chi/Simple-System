@@ -9,8 +9,15 @@ from .models import *
 def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
+def pointofsale(request):
+    return render(request, 'POS/pos.html')
+
+def viewposproduct(request, product_id):
+    product = Product.objects.get(product_id=product_id)
+    return render(request, 'POS/pos.html', {'product': product})
+
 def index(request):
-    return render(request, 'Dashboard/dashboard.html')
+    return render(request, 'POS/pos.html')
 
 # def update user
 def updateproduct(request, product_id):

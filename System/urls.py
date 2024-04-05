@@ -5,6 +5,8 @@ from .views import index
 urlpatterns = [
     path('', views.index, name='index'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('pointofsale/', views.pointofsale, name='pointofsale'),
+    
     
     path('usermanagement/', views.usermanagement, name='usermanagement'),
     path('deleteuser/<int:id>/', views.deleteuser, name='deleteuser'),

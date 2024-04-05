@@ -10,28 +10,6 @@
     //     // //open modal
     //     $("#openaddproduct").click();
     // });
-$(document).ready(function() {
-    // JavaScript code to handle modal visibility
-    document.addEventListener("DOMContentLoaded", function() {
-    const addProductButton = document.getElementById("#addproduct");
-    const modalBackdrop = document.querySelector("[data-dialog-backdrop='dialog-md']");
-
-    // Function to toggle modal visibility
-    const toggleModal = () => {
-        modalBackdrop.classList.toggle("opacity-0");
-        modalBackdrop.classList.toggle("pointer-events-none");
-    };
-
-    // Event listener for the Add Product button
-    addProductButton.addEventListener("click", toggleModal);
-    });
-});
-$(document).ready(function() {
-    // This is for sidenav
-    document.getElementById('toggleButton').addEventListener('click', function() {
-        document.getElementById('sidenav').classList.toggle('active');
-    });
-});
 
 // $(document).ready(function() {
 
@@ -84,6 +62,7 @@ $(document).ready(function() {
     //             console.error('Error fetching data:', error);
     //         });
     // });
+
     $(document).ready(function() {
     // Shrink side nav and content
     $('#toggleButton').click(function () {
@@ -102,6 +81,7 @@ $(document).ready(function() {
         }
     });
 });
+
 $(document).ready(function() {
     $('#formuser').submit(function() {
         // if (success) {
@@ -131,22 +111,7 @@ $(document).ready(function() {
             //     timer: 1500
             // });
     });
-    
-            // Swal.fire({
-            //     position: "center",
-            //     icon: "success",
-            //     title: "Successfully Created User",
-            //     showConfirmButton: false,
-            //     timer: 1500
-            //   });
 
-            //   Swal.fire({
-            //     position: "center",
-            //     icon: "error",
-            //     title: "Please provide a valid info",
-            //     showConfirmButton: false,
-            //     timer: 1500
-            //   });
 $(document).ready(function() {
     //update user
     $('#updateuser').submit(function(event) {
@@ -165,3 +130,14 @@ $(document).ready(function() {
               });
             });
         });
+
+//this is try
+document.addEventListener('DOMContentLoaded', function () {
+    const dialog = document.querySelector('[data-dialog-target="dialog"]');
+    const productIdPlaceholder = document.getElementById('product_id_placeholder');
+
+    dialog.addEventListener('click', function (event) {
+        const productId = event.target.getAttribute('data-product-id');
+        productIdPlaceholder.innerText = productId;
+    });
+});
