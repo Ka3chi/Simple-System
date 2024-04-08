@@ -10,7 +10,15 @@ def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
 def pointofsale(request):
-    return render(request, 'POS/pos.html')
+    products = Product.objects.all()
+    # productform = CustomProductForm()
+    
+    context = {
+        "products" : products,
+        # "productform" : productform,
+        
+    }
+    return render(request, 'POS/pos.html', context)
 
 def viewposproduct(request, product_id):
     product = Product.objects.get(product_id=product_id)
