@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm
 from django.core.paginator import Paginator
 
@@ -8,6 +8,35 @@ from .models import *
 # Create your views here.
 def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
+
+# pos quantity modal
+# def posquantity(request):
+#     products = Product.objects.all()
+    
+#     if request.method == 'POST':
+#         product_id = request.POST.get('product_id')
+#         quantity = int(request.POST.get('quantity'))
+
+#         try:
+#             product = Product.objects.get(pk=product_id)
+#         except Product.DoesNotExist:
+#             return HttpResponse("Product not found.", status=404)
+
+#         current_quantity = product.quantity
+
+#         # Ensure the quantity to subtract is not greater than the current quantity
+#         if quantity <= current_quantity:
+#             product.quantity -= quantity
+#             product.save()
+#             return HttpResponse("Quantity subtracted successfully.")
+#         else:
+#             return HttpResponse("Quantity to subtract exceeds current quantity.", status=400)
+
+#     context = {
+#         "product" : products,
+        
+#     }
+#     return render(request, 'POS/pos.html', context)
 
 def pointofsale(request):
     products = Product.objects.all()
@@ -139,7 +168,6 @@ def updateuser(request, id):
         "userform" : userform,
         
     }
-    
     return render(request, 'Usermanagement/updateuser.html', context)
 
 #render usermanagement and create user

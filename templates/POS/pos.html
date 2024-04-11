@@ -40,7 +40,11 @@
     <div class=" p-5 w-full rounded-lg m-3">
       <div class=" grid grid-cols-5 gap-4">
         {% for product in products %}
-          <button class=" bg-gray-300 drop-shadow-md rounded-lg" data-dialog-target="quantitymodal">
+          <button class="selectproduct border drop-shadow-md rounded-lg hover:bg-black hover:text-white" 
+          data-dialog-target="quantitymodal"
+          data-productname="{{ product.product_name}}" data-productquantity="{{ product.quantity}}"
+          data-product_id="{{ product.product_id}}"
+          >
             <ul>
               <li class="p-3"><img class="w-full" src="{{ product.image.url }}" alt="product-image"></li>
               <div class="flex flex-row">
@@ -57,7 +61,7 @@
       </div>
       
     </div>
-    <div class="bg-yellow-400 p-5 rounded-lg m-3">
+    <div class="cart bg-yellow-400 p-5 rounded-lg m-3">
       this is for the payments and add to cart
     </div>
   </div>

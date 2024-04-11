@@ -26,7 +26,7 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 1500
             });
-        });
+    });
         // } else {
         //     Swal.fire({
         //         position: "center",
@@ -70,16 +70,14 @@ $(document).ready(function() {
               });
             });
     
-
-    //this is try
-    document.addEventListener('DOMContentLoaded', function () {
-        const dialog = document.querySelector('[data-dialog-target="dialog"]');
-        const productIdPlaceholder = document.getElementById('product_id_placeholder');
-
-        dialog.addEventListener('click', function (event) {
-            const productId = event.target.getAttribute('data-product-id');
-            productIdPlaceholder.innerText = productId;
-        });
+    $('.addproductform').submit(function() {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfully Added a Product",
+            showConfirmButton: false,
+            timer: 1500
+          });
     });
 
 
@@ -88,6 +86,22 @@ $(document).ready(function() {
         var imageUrl = $(this).data('info');
         $("#modalImage").attr('src', imageUrl);
     });
+
+    $('.posquantityform').submit(function() {
+        
+    });
+
+    //this is to render the data to model
+    $(".selectproduct").click(function(){
+        var productname = $(this).data('productname');
+        var productquantity = $(this).data('productquantity');
+        var product_id = $(this).data('product_id');
+
+        $("#productname").text(productname);
+        $("#stocks").text(productquantity);
+        $("#product_id").text(product_id);
+    });
+
 });
 
 //open modal
