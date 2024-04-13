@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm
+from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm, cartform
 from django.core.paginator import Paginator
 
 from .models import *
@@ -10,33 +10,23 @@ def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
 # pos quantity modal
-# def posquantity(request):
-#     products = Product.objects.all()
+def posquantity(request):
+    cartform = models.objects.all()
     
-#     if request.method == 'POST':
-#         product_id = request.POST.get('product_id')
-#         quantity = int(request.POST.get('quantity'))
-
-#         try:
-#             product = Product.objects.get(pk=product_id)
-#         except Product.DoesNotExist:
-#             return HttpResponse("Product not found.", status=404)
-
-#         current_quantity = product.quantity
-
-#         # Ensure the quantity to subtract is not greater than the current quantity
-#         if quantity <= current_quantity:
-#             product.quantity -= quantity
-#             product.save()
-#             return HttpResponse("Quantity subtracted successfully.")
-#         else:
-#             return HttpResponse("Quantity to subtract exceeds current quantity.", status=400)
-
-#     context = {
-#         "product" : products,
+    if request.method == 'POST':
         
-#     }
-#     return render(request, 'POS/pos.html', context)
+        # product_id = request.POST.get('product_id')
+        # quantity = int(request.POST.get('quantity'))
+        # cartform = models.objects.filter()
+        
+        # current_quantity = product.quantity
+
+        # Ensure the quantity to subtract is not greater than the current quantity
+        # if quantity <= current_quantity:
+        #     product.quantity -= quantity
+        #     cartform.save()
+
+        return render()
 
 def pointofsale(request):
     products = Product.objects.all()

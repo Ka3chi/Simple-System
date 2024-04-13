@@ -87,19 +87,40 @@ $(document).ready(function() {
         $("#modalImage").attr('src', imageUrl);
     });
 
-    $('.posquantityform').submit(function() {
+    $('.posquantityform').submit(function(e) {
+        e.preventDefault();
+
+        var productname = $("#productname").val();
+        var productid = $("#product_id").val();
+        var productstocks = $("#stocks").val();
+        var quantity = $("#quantity").val();
+        
+        total = productstocks - quantity
+
+        console.log(productid)
+        console.log(productname)
+        console.log(total)
+        console.log("x",quantity)
         
     });
 
     //this is to render the data to model
     $(".selectproduct").click(function(){
+
         var productname = $(this).data('productname');
         var productquantity = $(this).data('productquantity');
         var product_id = $(this).data('product_id');
 
+        // giving value
+        $("#productname").val(productname);
+        $("#stocks").val(productquantity);
+        $("#product_id").val(product_id);
+
+        // displaying text
         $("#productname").text(productname);
         $("#stocks").text(productquantity);
         $("#product_id").text(product_id);
+
     });
 
 });

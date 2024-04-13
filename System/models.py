@@ -26,3 +26,18 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
     
+class Cart(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(null=False)    
+    
+    def __str__(self):
+        return self.product.product_name
+    
+class Transaction(models.Model):
+    cash = models.IntegerField(null=False)
+    total = models.IntegerField(null=False)
+    change = models.IntegerField(null=False)
+    date = models.DateTimeField(null=False)
+
+class TransactionItem(models.Model):
+    transaction = models.ForeignKey(Transaction, null=False, on_delete=models.CASCADE)
