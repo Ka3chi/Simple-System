@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm, cartform
+from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm, Cartform
 from django.core.paginator import Paginator
 
 from .models import *
@@ -10,23 +10,48 @@ def dashboard(request):
     return render(request, 'Dashboard/dashboard.html')
 
 # pos quantity modal
-def posquantity(request):
-    cartform = models.objects.all()
+def add_to_cart(request):
+     if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        quantity = int(request.POST.get('quantity', 1))  # Default to 1 if not provided
+
+        if product_id:
+            try:
+                # Fetch the product using the product_id (which is a string)
+                product = Product.objects.get(product_id=product_id)
+            except Product.DoesNotExist:
+                # Handle the case where the product does not exist
+                return redirect('view_cart')  # Redirect or show an error message
+            
+            # Check if the product is already in the cart
+            existing_item = Cart.objects.filter(product=product).first()
+            if existing_item:
+                existing_item.quantity += quantity
+                existing_item.save()
+            else:
+                new_item = Cart(product=product, quantity=quantity)
+                new_item.save()
+
+            return render(request, 'POS/pos.html')
     
-    if request.method == 'POST':
-        
-        # product_id = request.POST.get('product_id')
-        # quantity = int(request.POST.get('quantity'))
-        # cartform = models.objects.filter()
-        
-        # current_quantity = product.quantity
+    # Handle invalid or GET requests by redirecting to the cart view
+        return render(request, 'POS/pos.html')
 
-        # Ensure the quantity to subtract is not greater than the current quantity
-        # if quantity <= current_quantity:
-        #     product.quantity -= quantity
-        #     cartform.save()
 
-        return render()
+    # cart = Cartform.objects.all()
+    # if request.method == 'POST':
+    #     # product_id = request.POST.get('product_id')
+    #     # quantity = int(request.POST.get('quantity'))
+    #     cartform = models.objects.filter()
+        
+    #     # current_quantity = product.quantity
+
+    #     # Ensure the quantity to subtract is not greater than the current quantity
+    #     # if quantity <= current_quantity:
+    #     #     product.quantity -= quantity
+    #     #     cartform.save()
+
+    # return render()
 
 def pointofsale(request):
     products = Product.objects.all()
