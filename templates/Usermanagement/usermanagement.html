@@ -1,0 +1,170 @@
+{% extends "Main/index.html" %}
+
+{% block content %}
+<div class="p-5 bg-white rounded-[10px] h-[100%] animate-fade" id="usermanagement">
+    <div class=" w-[100%] flex justify-center items-center mb-3">
+        <h1 class="text-[40px]">User Management</h1>
+    </div>
+    <div class="flex flex-row">
+      {% comment %} modal for create user {% endcomment %}
+    <button data-ripple-light="true" data-dialog-target="addusermodal"
+      class="select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-11 w-[200px]">
+      Add User
+    </button>
+    <div class="w-[100%]">
+
+    </div>
+    {% comment %} this is for the search {% endcomment %}
+    <div class="flex flex-row rounded-lg me-14">
+      <div class="flex w-full gap-2 shrink-0 md:w-max">
+        <div class="w-full md:w-72">
+          <form action="{% url 'search_user' %}">
+            {% csrf_token %}
+          <div class="relative h-10 w-full min-w-[200px]">
+            <div class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+              <button type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+              </svg>
+              </button>
+            </div>
+            <input
+              class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              name="search"
+              type="search"
+              placeholder=" " />
+            <label
+              class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+              Search
+            </label>
+          </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-center mt-8 max-h-[500px] flex-col overflow-y-scroll ">
+        <table>
+            <thead> 
+                <tr class="bg-blue-500 text-white items-center">
+                    <th class="p-3">Username</th>
+                    <th class="p-3">Firstname</th>
+                    <th class="p-3">Lastname</th>
+                    <th class="p-3">Email</th>
+                    <th class="p-3">Role</th>
+                    <th class="p-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for account in accounts %}
+                <tr>
+                    {% comment %} <input type="hidden" {{ account.id }}> {% endcomment %}
+                    <td class="ps-10">{{ account.username }}</td>
+                    <td class="ps-10">{{ account.first_name }}</td>
+                    <td class="ps-10">{{ account.last_name}}</td>
+                    <td class="ps-10">{{ account.email }}</td>
+                    <td class="ps-10">{{ account.role }}</td>
+                    <td class="flex flex-row justify-center ps-10 mt-3 gap-x-5 ">
+                        <a 
+                        class="flex justify-center items-center"
+                        href="{% url 'deleteuser' account.id %}"
+                        type="button">
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
+                        <a 
+                        class="flex justify-center items-center"
+                        id="editbtn"
+                        href="{% url 'updateuser' account.id %}" >
+                          <i class="fa-solid fa-pen"></i>
+                      </a>
+                      <a 
+                        data-ripple-light="true" id="editbtn"
+                        class=" select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1 px-1 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-[100px] h-[40px] flex justify-center items-center" >
+                        Change Password
+                      </a>
+                    </td>
+                </tr>
+            {% empty %}
+        <tr>
+            <td colspan="2">Currently no users in list</td>
+        </tr>
+           
+    {% endfor %}
+            </tbody>
+        </table> 
+  </div>
+  <div class="flex justify-center items-center flex-row m-3 p-5">
+    <div class="flex gap-4 p-5">
+      {% if accounts.has_previous  %}
+        <a href="?page=1"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-28"
+          type="button">
+          <i class="fa-solid fa-angles-left"></i> First
+        </a>
+        <a href="?page={{ accounts.previous_page_number }}"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            aria-hidden="true" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+          </svg>
+          Previous
+        </a>
+        
+        <div class="flex justify-center items-center ms-28 me-10 gap-2">
+          Page {{ accounts.number }} of {{ accounts.paginator.num_pages }}
+        </div>
+
+        <button disabled
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-40"
+          type="button">
+          
+        </button>
+        <button disabled
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-40"
+          type="button">
+          
+        </button>
+        {% endif %}
+
+        {% if accounts.has_next  %}
+        <button disabled
+        class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-32"
+        type="button">
+        
+      </button>
+      <button disabled
+        class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-32"
+        type="button">
+        
+      </button>
+
+        <div class="flex justify-center items-center gap-2 me-20 ms-10 ">
+          Page {{ accounts.number }} of {{ accounts.paginator.num_pages }}
+        </div>
+
+        <a href="?page={{ accounts.next_page_number}}"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            aria-hidden="true" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+          </svg>
+        </a>
+        <a href="?page={{ accounts.paginator.num_pages}}"
+          class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-11"
+          type="button">
+          Last <i class="fa-solid fa-angles-right"></i>
+        </a>
+        {% endif %}
+  </div>
+</div> 
+</div>
+</div>
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
+{% include 'usermanagement/Modal/addusermodal.html' %}
+{% endblock %}
