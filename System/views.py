@@ -56,7 +56,6 @@ def add_to_cart(request):
     #     # if quantity <= current_quantity:
     #     #     product.quantity -= quantity
     #     #     cartform.save()
-
     # return render()
 
 def deletecart(request,id):
