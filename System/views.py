@@ -11,6 +11,13 @@ def dashboard(request):
 
 # pos quantity modal
 def add_to_cart(request):
+     products = Product.objects.all()
+     carts = Cart.objects.all()
+
+     context = {
+            "products" : products,
+            "carts" : carts,
+        }
      if request.method == 'POST':
         product_id = request.POST.get('product_id')
         quantity = int(request.POST.get('quantity', 1))  # Default to 1 if not provided
@@ -32,10 +39,9 @@ def add_to_cart(request):
                 new_item = Cart(product=product, quantity=quantity)
                 new_item.save()
 
-            return render(request, 'POS/pos.html')
-    
-    # Handle invalid or GET requests by redirecting to the cart view
-        return render(request, 'POS/pos.html')
+            return render(request, 'POS/pos.html', context)  
+        
+        return render(request, 'POS/pos.html', context)
 
 
     # cart = Cartform.objects.all()
@@ -53,14 +59,18 @@ def add_to_cart(request):
 
     # return render()
 
+def deletecart(request,id):
+    erase = Cart.objects.get(id=id)
+    erase.delete()
+    return redirect('pointofsale')
+
 def pointofsale(request):
     products = Product.objects.all()
-    # productform = CustomProductForm()
-    
+    carts = Cart.objects.all()
+
     context = {
         "products" : products,
-        # "productform" : productform,
-        
+        "carts" : carts,
     }
     return render(request, 'POS/pos.html', context)
 

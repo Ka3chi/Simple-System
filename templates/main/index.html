@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="{% static 'src/output.css' %}" />
     {% endcompress %}
   </head>
-  <body class="overflow-hidden w-screen h-screen">
+  <body class=" flex flex-col bg-gray-300">
     {% comment %}parent{% endcomment %}
-    <div class="w-screen h-screen overflow-hidden flex flex-col bg-gray-300">
-      <header class="p-5 bg-black text-white flex justify-center w-[100%]">
+      <header class="p-5 bg-black text-white flex justify-center w-full">
         <div class="ps-5">
           <h1>Logo</h1>
         </div>
@@ -81,13 +80,12 @@
             <a href="#" class="sideLink flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] hover:bg-black active:shadow-none mb-4" type="button" data-ripple-light="true"><i class="fa-solid fa-users"></i><span class="ps-4 sidelabel">Settings</span></a>
           </div>
         </aside>
-        <main class="transition flex-1 overflow-hidden ms-5" id="content">
+        <main class="transition flex-1 ms-5" id="content">
           {% block content %}
 
           {% endblock %}
         </main>
       </div>
-    </div>
     <script src="{% static 'js/index.js' %}"></script>
     <!-- from cdn -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
