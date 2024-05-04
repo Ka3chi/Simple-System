@@ -51,7 +51,6 @@ def add_to_cart(request):
     #     cartform = models.objects.filter()
         
     #     # current_quantity = product.quantity
-
     #     # Ensure the quantity to subtract is not greater than the current quantity
     #     # if quantity <= current_quantity:
     #     #     product.quantity -= quantity
