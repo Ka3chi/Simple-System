@@ -804,12 +804,12 @@ video {
   height: 40px;
 }
 
-.h-\[60px\] {
-  height: 60px;
+.h-\[500px\] {
+  height: 500px;
 }
 
-.h-\[700px\] {
-  height: 700px;
+.h-\[60px\] {
+  height: 60px;
 }
 
 .h-full {
@@ -992,8 +992,8 @@ video {
           user-select: none;
 }
 
-.grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -1255,6 +1255,10 @@ video {
 .object-center {
   -o-object-position: center;
      object-position: center;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .p-3 {
