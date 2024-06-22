@@ -1,96 +1,94 @@
 {% extends "Main/index.html" %} {% block content %}
-<div class="bg-white h-[100%] rounded-[10px] p-5 animate-fade-up overflow-hidden"
-  id="pointofsale">
-  <div class="p-5 w-full rounded-lg m-3">
-    <div class="flex flex-col gap-8 mb-4 md:flex-row md:items-center">
-      <h5
-        class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900"
-      >
-        Pont of Sale
-      </h5>
-      <div class="relative h-10 min-w-[200px] left-6">
-        <form action="{% url 'search_product' %}">
-          {% csrf_token %}
-          <div
-            class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500"
-          >
-            <button type="submit">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-                class="w-5 h-5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                ></path>
-              </svg>
+<div class="bg-white h-[100%] rounded-[10px] p-5 animate-fade-up overflow-hidden" id="pointofsale">
+  <div class="flex flex-row">
+    <div class="flex flex-col h-[650px] w-full">
+      <div class="p-5 w-full rounded-lg m-3">
+        <div class="flex flex-col gap-8 mb-4 md:flex-row md:items-center">
+          <h5 class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+           Point of Sale
+          </h5>
+          <div class="relative h-10 min-w-[200px] left-6">
+            <form action="{% url 'search_product' %}">
+              {% csrf_token %}
+              <div class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+                <button type="submit">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    class="w-5 h-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+                <input class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                  type="search"
+                  name="search"
+                  placeholder=" "
+                />
+                <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
+                >
+                  Search
+                </label>
+            </form>
+          </div>
+        </div>
+      </div>
+        {% comment %} this is table of pos {% endcomment %}
+        <div class="p-5 w-full rounded-lg m-3">
+          <div class="grid grid-cols-6 gap-3 overflow-y-scroll h-[500px]">
+            {% for product in products %}
+            <button class="selectproduct border drop-shadow-md rounded-lg hover:bg-black hover:text-white"
+              data-dialog-target="quantitymodal"
+              data-productname="{{ product.product_name}}"
+              data-productquantity="{{ product.quantity}}"
+              data-product_id="{{ product.product_id}}">
+              <div>
+                <div class="p-3">
+                  <img
+                    class="w-full"
+                    src="{{ product.image.url }}"
+                    alt="product-image"
+                  />
+                </div>
+                <div class="flex flex-row justify-center">
+                  <div class="p-1">{{ product.product_name }}</div>
+                  <div class="p-1">{{ product.price }}</div>
+                </div>
+              </div>
             </button>
+            {% empty %}
+              <div class="flex justify-center items-center"><h1>Add a Product</h1></div>
+            {% endfor %}
           </div>
-          <input
-            class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            type="search"
-            name="search"
-            placeholder=" "
-          />
-          <label
-            class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
-          >
-            Search
-          </label>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
-  {% comment %} this is table for the content {% endcomment %}
-  <div class="flex flex-row h-[500px]">
-    <div class="p-5 w-full rounded-lg m-3">
-      <div class="grid grid-cols-6 gap-3 overflow-y-scroll h-[500px]">
-        {% for product in products %}
-        <button
-          class="selectproduct border drop-shadow-md rounded-lg hover:bg-black hover:text-white"
-          data-dialog-target="quantitymodal"
-          data-productname="{{ product.product_name}}"
-          data-productquantity="{{ product.quantity}}"
-          data-product_id="{{ product.product_id}}"
-        >
-          <div>
-            <div class="p-3">
-              <img
-                class="w-full"
-                src="{{ product.image.url }}"
-                alt="product-image"
-              />
-            </div>
-            <div class="flex flex-row justify-center">
-              <div class="p-1">{{ product.product_name }}</div>
-              <div class="p-1">{{ product.price }}</div>
-            </div>
-          </div>
-        </button>
-        {% empty %}
-        <div class="flex justify-center items-center"><h1>Currently no products in list</h1></div>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="bg-dark-500 p-3 rounded-lg m-3 w-[500px] h-[500px] overflow-y-scroll  ">
+    <div class="bg-dark-500 p-3 rounded-lg m-3 w-[500px] h-[500px] overflow-y-scroll">
       {% for cart in carts %}
         <div class="flex flex-col items-center w-full bg-light-blue-300 rounded mb-3 mt-3">
-          <div class="flex flex-row justify-around items-center w-full">
+          <div class="cartitem flex flex-row justify-around items-center w-full" >
             <div>{{ cart.product.product_name}}</div>
-            <div>x{{ cart.quantity}}</div>
-            <div>{{ cart.product.price}}</div>
+            <div class="quantity" data-quantity="{{ cart.quantity }}">x{{ cart.quantity}}</div>
+            <div class="price" data-price="{{ cart.product.price }}">{{ cart.product.price}}</div>
             <a class="p-5" href="{% url 'deletecart' cart.id %}">
               <i class="fa-solid fa-x"></i>
             </a>
           </div>
         </div>
-        {% endfor %}
+      {% endfor %}
+      <div class="">
+        This is the total
+        <div id="total" class="flex justify-between">Total: $<span id="total-price">0.00</span></div>
+        <Button class="bg-red-500 text-white p-5 w-full h-[50px] flex justify-center items-center rounded mt-2">Pay</Button>
+      </div>
     </div>
   </div>
 </div>

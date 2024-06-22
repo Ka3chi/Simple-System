@@ -11,16 +11,16 @@
     <script src="{% static 'fontawesome/js/all.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Dashboard</title>
+    <title>Simple System</title>
 
     {% compress css %}
     <link rel="stylesheet" href="{% static 'src/output.css' %}" />
     {% endcompress %}
   </head>
-  <body class=" flex flex-col bg-gray-300">
+  <body class=" flex flex-col bg-gray-300 p-0 m-0">
     {% comment %}parent{% endcomment %}
-      <header class="p-5 bg-black text-white flex justify-center w-full">
-        <div class="ps-5">
+      <header class="p-5 bg-black text-white flex justify-center w-[100%]">
+          <div class="ps-5 w-[200px] flex justify-center items-center">
           <h1>Simple System</h1>
         </div>
         <div class="w-[100%]"></div>
@@ -43,14 +43,14 @@
         </div>
       </header>
       {% comment %}parent for the content{% endcomment %}
-      <div class="w-[100%] h-[100%] flex flex-row p-5">
+      <div class=" flex flex-row p-5 w-screen">
         <aside class="bg-white transition ease-in-out w-[250px] rounded-[10px] p-5" id="sidenav">
           <div class="flex flex-row justify-center items-center mb-5">
             <h5>Menu</h5>
             {% comment %} <button id="toggleButton"><i class="fa-solid fa-bars"></i></button> {% endcomment %}
           </div>
           <div class="flex flex-row justify-center items-center transition-all">
-            <a href="{% url 'dashboard' %}" class="sideLink flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black focus:bg-black focus:text-white focus:ring-opacity-50 active:bg-black active:text-white active:shadow-none mb-4" type="button" data-ripple-light="true">
+            <a href="{% url 'dashboard' %}" class="sideLink flex align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none w-[240px] disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-black focus:bg-black focus:text-white focus:ring-opacity-50 active:bg-black active:text-white active:shadow-none mb-4 " type="button" data-ripple-light="true" >
               <i class="fa-solid fa-house"></i>
               <span class="ps-4 sidelabel transition-all">Dashboard</span>
             </a>
