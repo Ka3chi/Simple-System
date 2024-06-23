@@ -218,10 +218,8 @@ def usermanagement(request):
     
     # Paginator 
     paginator = Paginator(accounts, 6)
-    
-    P = Paginator(CustomUser.objects.all(),6)
     page = request.GET.get('page')
-    accounts = P.get_page(page)
+    accounts = paginator.get_page(page)
     
     page_number = request.GET.get('page')
     try:
