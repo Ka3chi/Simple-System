@@ -2,9 +2,29 @@
 
 {% block content %}
     
-    <div class="bg-green-500 h-[100%] rounded-[10px] p-5 animate-fade-up" id="dashboard">
-        <div class=" w-[100%] flex justify-center items-center mb-3">
-            <h1 class="text-[40px]">Dashboard</h1>
+    <div class="bg-white h-[100%] rounded-[10px] p-5 animate-fade-up" id="dashboard">
+        <div class="flex justify-center items-center mb-3">
+            <h1 class="text-[40px]">Overview</h1>
+        </div>
+        <div class="flex justify-center items-center">
+            <div class="grid grid-cols-4 justify-between w-full">
+                <div class="bg-dirtywhite p-2 h-[100px] grid justify-center items-center drop-shadow-lg">
+                    <span>Employee's</span>
+                    <span class="grid justify-items-center">0</span>
+                </div>
+                <div class="bg-gray-300 p-2 h-[100px] grid justify-center items-center drop-shadow-lg">
+                    <span>Product's</span>
+                    <span class="grid justify-items-center">0</span>
+                </div>
+                <div class="bg-gray-300 p-2 h-[100px] grid justify-center items-center drop-shadow-lg">
+                    <span>Transaction's</span>
+                    <span class="grid justify-items-center">0</span>
+                </div>
+                <div class="bg-gray-300 p-2 h-[100px] grid justify-center items-center drop-shadow-lg">
+                    <span>Receipt's</span>
+                    <span class="grid justify-items-center">0</span>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -122,77 +122,63 @@
             </tbody>
           </table>
         </div>
-        {% comment %} this is the pagination {% endcomment %}
-        <div class="flex flex-row justify-center mt-3">
-          <div class="flex gap-4 w-[100%]">
-            {% if products.has_previous  %}
-              <a href="?page=1"
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-28"
-                type="button">
-                <i class="fa-solid fa-angles-left"></i> First
-              </a>
-              <a href="?page={{ products.previous_page_number }}"
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                  aria-hidden="true" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-                </svg>
-                Previous
-              </a>
-              
-              <div class="flex items-center gap-2 ms-36 me-36">
-                Page {{ products.number }} of {{ products.paginator.num_pages }}
-              </div>
-      
-              <button disabled
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-36"
-                type="button">
-                
-              </button>
-              <button disabled
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ms-36"
-                type="button">
-                
-              </button>
-              {% endif %}
-      
-              {% if products.has_next  %}
-              <button disabled
-              class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-32"
-              type="button">
-              
-            </button>
-            <button disabled
-              class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-32"
-              type="button">
-              
-            </button>
-      
-              <div class="flex justify-center items-center gap-2 me-16 ms-10 ">
-                Page {{ products.number }} of {{ products.paginator.num_pages }}
-              </div>
-      
-              <a href="?page={{ products.next_page_number}}"
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none "
-                type="button">
-                Next
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                  aria-hidden="true" class="w-4 h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-                </svg>
-              </a>
-              <a href="?page={{ products.paginator.num_pages}}"
-                class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none me-28 "
-                type="button">
-                Last <i class="fa-solid fa-angles-right"></i>
-              </a>
-              {% endif %}
+        <div class="flex justify-center items-center gap-4">
+          {% if page_data.has_previous %}
+          <a href="?page={{ page_data.previous_page_number }}"
+            class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+              aria-hidden="true" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+            </svg>
+            Previous
+          </a>
+          {% else %}
+          <button disabled
+            class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+              aria-hidden="true" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+            </svg>
+            Previous
+          </button>
+          {% endif %}
+        
+          <div class="flex items-center gap-2">
+            {% for num in page_data.paginator.page_range %}
+            <a href="?page={{ num }}"
+              class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg {% if page_data.number == num %}bg-gray-900 text-white shadow-md shadow-gray-900/10 {% else %}text-gray-900 hover:bg-gray-900/10 {% endif %} transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none">
+              <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                {{ num }}
+              </span>
+            </a>
+            {% endfor %}
+          </div>
+        
+          {% if page_data.has_next %}
+          <a href="?page={{ page_data.next_page_number }}"
+            class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+              aria-hidden="true" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+          {% else %}
+          <button disabled
+            class="flex items-center gap-2 px-6 py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+              aria-hidden="true" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </button>
+          {% endif %}
         </div>
-      </div>
+        
       </div>
     </div>
-  </div>
   {% comment %} Modal Here {% endcomment %}
   {% include 'Product/Modal/productModal.html' %}
   {% include 'Product/Modal/productModalimage.html' %}

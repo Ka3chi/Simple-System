@@ -20,3 +20,10 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+    # settings.py
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+

@@ -1,5 +1,27 @@
 $(document).ready(function() {
-    
+    let total = 0;
+
+  $(".cartitem").each(function() {
+    const priceElement = $(this).find(".price");
+    const quantityElement = $(this).find(".quantity");
+
+    if (priceElement.length && quantityElement.length) {
+      const price = parseFloat(priceElement.data("price"));
+      const quantity = parseInt(quantityElement.data("quantity"));
+
+      // Log price and quantity for debugging
+      console.log("Price:", price, "Quantity:", quantity);
+
+      const itemTotal = price * quantity;
+      console.log("Item Total:", itemTotal);
+
+      total += itemTotal;
+      console.log("Running Total:", total);
+    }
+  });
+
+  $("#total-price").text(total.toFixed(2));
+
     // Shrink side nav and content
     $('#toggleButton').click(function () {
         var sidenav = $('#sidenav');
@@ -87,22 +109,22 @@ $(document).ready(function() {
         $("#modalImage").attr('src', imageUrl);
     });
 
-    $('.posquantityform').submit(function(e) {
-        e.preventDefault();
+    // $('.posquantityform').submit(function(e) {
+    //     e.preventDefault();
 
-        var productname = $("#productname").val();
-        var productid = $("#product_id").val();
-        var productstocks = $("#stocks").val();
-        var quantity = $("#quantity").val();
+    //     var productname = $("#productname").val();
+    //     var productid = $("#product_id").val();
+    //     var productstocks = $("#stocks").val();
+    //     var quantity = $("#quantity").val();
         
-        total = productstocks - quantity
+    //     total = productstocks - quantity
 
-        console.log(productid)
-        console.log(productname)
-        console.log(total)
-        console.log("x",quantity)
+    //     console.log(productid)
+    //     console.log(productname)
+    //     console.log(total)
+    //     console.log("x",quantity)
         
-    });
+    // });
 
     //this is to render the data to model
     $(".selectproduct").click(function(){
@@ -123,7 +145,8 @@ $(document).ready(function() {
 
     });
 
-});
+    // $('#myButton').focus();
+
 
 //open modal
     // $(document).on("click", "#addproduct", function(e){
@@ -137,7 +160,7 @@ $(document).ready(function() {
     //     $("#openaddproduct").click();
     // });
 
-    // // JavaScript to change URL and load content via AJAX
+    // JavaScript to change URL and load content via AJAX
     // $('.sideLink').on('click', function(event) {
     //     event.preventDefault(); // Prevent the default behavior of clicking a link
     //     var url = $(this).attr('href');
@@ -179,4 +202,26 @@ $(document).ready(function() {
     //         error: function(xhr, status, error) {
     //             console.error('Error fetching data:', error);
     //         }
+    //         });
     //     });
+
+
+            // // Open the dialog
+            // $('#openDialog').on('click', function(event) {
+            //     event.preventDefault();
+            //     $('#myDialog').removeClass('hidden').addClass('flex');
+            // });
+        
+            // // Close the dialog
+            // $('#closeDialog').on('click', function() {
+            //     $('#myDialog').removeClass('flex').addClass('hidden');
+            // });
+        
+            // // Optionally, close the dialog when clicking outside of it
+            // $('#myDialog').on('click', function(event) {
+            //     if ($(event.target).is('#myDialog')) {
+            //         $('#myDialog').removeClass('flex').addClass('hidden');
+            //     }
+            // });
+        
+    });

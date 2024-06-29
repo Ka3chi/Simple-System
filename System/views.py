@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from System.forms import CustomProductForm, CustomUserChangeForm, CustomUserCreationForm, Cartform
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
 
@@ -43,6 +43,10 @@ def add_to_cart(request):
         
         return render(request, 'POS/pos.html', context)
 
+# def Itemstotal(request):
+#     Carts = Cart.objects.all()
+    
+#     return
 
     # cart = Cartform.objects.all()
     # if request.method == 'POST':
@@ -51,7 +55,6 @@ def add_to_cart(request):
     #     cartform = models.objects.filter()
         
     #     # current_quantity = product.quantity
-
     #     # Ensure the quantity to subtract is not greater than the current quantity
     #     # if quantity <= current_quantity:
     #     #     product.quantity -= quantity
@@ -77,6 +80,7 @@ def viewposproduct(request, product_id):
     product = Product.objects.get(product_id=product_id)
     return render(request, 'POS/pos.html', {'product': product})
 
+# this is the main index
 def index(request):
     return render(request, 'POS/pos.html')
 
@@ -125,12 +129,24 @@ def search_product(request):
 def product(request):
     products = Product.objects.all()
     productform = CustomProductForm()
+
+    product_list = Product.objects.all()  # Fetch all Product objects
+    paginator = Paginator(product_list, 6)  # Show 6 products per page
     
-    # pagination
     P = Paginator(Product.objects.all(),6)
     page = request.GET.get('page')
     products = P.get_page(page)
-    
+
+    page_number = request.GET.get('page')
+    try:
+        page_data = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        page_data = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        page_data = paginator.page(paginator.num_pages)
+
     # form submit
     if request.method == "POST":
         productform = CustomProductForm(request.POST, request.FILES)
@@ -146,6 +162,7 @@ def product(request):
         productform = CustomProductForm()
                
     context = {
+        'page_data': page_data,
         "products" : products,
         "productform" : productform,
         
@@ -199,9 +216,20 @@ def usermanagement(request):
     accounts = CustomUser.objects.all()
     userform = CustomUserCreationForm()
     
-    P = Paginator(CustomUser.objects.all(),6)
+    # Paginator 
+    paginator = Paginator(accounts, 6)
     page = request.GET.get('page')
-    accounts = P.get_page(page)
+    accounts = paginator.get_page(page)
+    
+    page_number = request.GET.get('page')
+    try:
+        page_data = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        page_data = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        page_data = paginator.page(paginator.num_pages)
     
     # form submit
     if request.method == "POST":
@@ -218,6 +246,7 @@ def usermanagement(request):
         userform = CustomUserCreationForm()
              
     context = {
+        'page_data': page_data,
         "accounts" : accounts,
         "userform" : userform,
         
